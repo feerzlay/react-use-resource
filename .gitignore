@@ -1,0 +1,4 @@
+lib/
+lib-web/
+node_modules/
+*.log
