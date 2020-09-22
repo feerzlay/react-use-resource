@@ -1,0 +1,19 @@
+{
+  "name": "react-use-resource",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "start": "",
+    "build": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feerzlay/react-use-resource.git"
+  },
+  "author": "Denis Yakshov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/feerzlay/react-use-resource/issues"
+  },
+  "homepage": "https://github.com/feerzlay/react-use-resource#readme"
+}
