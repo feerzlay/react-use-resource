@@ -9,7 +9,7 @@ import { ArticlesShowArticle } from './articles-show-article';
 import { ArticlesShowErrorBoundary } from './articles-show-error-boundary';
 
 export const ArticlesShow: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams();
   const articlesService = useArticlesService();
   const article = useResource('ARTICLES::SHOW', articlesService.getOne, [+id]);
 

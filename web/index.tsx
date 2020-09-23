@@ -1,7 +1,10 @@
+import {} from 'react/experimental';
+import {} from 'react-dom/experimental';
+
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { ResourcesBoundary } from 'react-use-resource';
 
 const ArticlesList = React.lazy(() =>
@@ -13,21 +16,21 @@ const ArticlesShow = React.lazy(() =>
 
 const Application: React.FC = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter timeoutMs={10000}>
       <ResourcesBoundary>
         <React.Suspense fallback={null}>
           <h2>
             <Link to="/">react-use-resource</Link>
           </h2>
           <React.Suspense fallback={null}>
-            <Switch>
-              <Route exact path="/">
+            <Routes>
+              <Route path="/">
                 <ArticlesList />
               </Route>
               <Route path="/:id">
                 <ArticlesShow />
               </Route>
-            </Switch>
+            </Routes>
           </React.Suspense>
         </React.Suspense>
       </ResourcesBoundary>
@@ -38,5 +41,5 @@ const Application: React.FC = () => {
 const container = document.getElementById('container');
 
 if (container) {
-  ReactDOM.render(<Application />, container);
+  ReactDOM.unstable_createRoot(container).render(<Application />);
 }
