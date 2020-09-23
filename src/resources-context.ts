@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 
-export const ResourcesContext = createContext<Record<string, unknown> | null>(null);
+export const ResourcesContext = createContext<Record<string, any> | null>(null);
 
 export function useResources() {
   const resources = useContext(ResourcesContext);

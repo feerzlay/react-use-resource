@@ -24,13 +24,9 @@ export default {
     }
   ],
   plugins: [
-    ...(isProduction
-      ? [
-          cleaner({
-            targets: ['./lib-web/']
-          })
-        ]
-      : []),
+    cleaner({
+      targets: ['./lib-web/']
+    }),
     copy({
       targets: [{ src: 'web/index.html', dest: 'lib-web' }]
     }),
@@ -43,7 +39,9 @@ export default {
     systemjs({
       include: [require.resolve('systemjs/dist/s.js')]
     }),
-    terser({ format: { comments: false } }),
-    ...(!isProduction ? [serve({ contentBase: 'lib-web', port: 8080 })] : [])
+    ...(isProduction ? terser({ format: { comments: false } }) : []),
+    ...(!isProduction
+      ? [serve({ contentBase: 'lib-web', port: 8080, historyApiFallback: true })]
+      : [])
   ]
 };

@@ -11,8 +11,8 @@
     "build:lib": "rollup -c rollup.config.lib.js",
     "build:web": "NODE_ENV=production rollup -c rollup.config.web.js",
     "start": "rollup -c rollup.config.web.js -w",
-    "lint": "eslint **/*.{js,ts}",
-    "lint:fix": "eslint **/*.{js,ts} --fix"
+    "lint": "eslint **/*.{js,ts} --quiet",
+    "lint:fix": "eslint **/*.{js,ts} --quiet --fix"
   },
   "husky": {
     "hooks": {
@@ -37,6 +37,7 @@
     "@rollup/plugin-replace": "^2.3.3",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.5",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
     "dotenv": "^8.2.0",
@@ -48,6 +49,7 @@
     "prettier": "^2.1.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "rollup": "^2.28.1",
     "rollup-plugin-cleaner": "^1.0.0",
     "rollup-plugin-copy": "^3.3.0",
