@@ -39,7 +39,7 @@ export default {
     systemjs({
       include: [require.resolve('systemjs/dist/s.js')]
     }),
-    ...(isProduction ? terser({ format: { comments: false } }) : []),
+    ...(isProduction ? [terser({ format: { comments: false } })] : []),
     ...(!isProduction
       ? [serve({ contentBase: 'lib-web', port: 8080, historyApiFallback: true })]
       : [])

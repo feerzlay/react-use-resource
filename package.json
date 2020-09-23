@@ -1,6 +1,6 @@
 {
   "name": "react-use-resource",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "lib/index.js",
   "module": "lib/index.es.js",
@@ -12,7 +12,8 @@
     "build:web": "NODE_ENV=production rollup -c rollup.config.web.js",
     "start": "rollup -c rollup.config.web.js -w",
     "lint": "eslint **/*.{js,ts} --quiet",
-    "lint:fix": "eslint **/*.{js,ts} --quiet --fix"
+    "lint:fix": "eslint **/*.{js,ts} --quiet --fix",
+    "release": "standard-version"
   },
   "husky": {
     "hooks": {
@@ -58,6 +59,7 @@
     "rollup-plugin-systemjs-loader": "^1.0.1",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.27.2",
+    "standard-version": "^9.0.0",
     "systemjs": "^6.6.1",
     "typescript": "^4.0.3"
   },
