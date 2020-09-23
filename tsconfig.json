@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "target": "es5",
+    "paths": {
+      "react-use-resource": ["src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
