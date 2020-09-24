@@ -31,17 +31,33 @@ export const useArticlesService = () => {
         }, 1000);
       });
     },
-    getOne: (id: number) => {
-      return new Promise<IArticle>((resolve, reject) => {
+    getOne: (id: number): [Promise<IArticle>, () => void] => {
+      let isCanceled = false;
+
+      let cancel = () => {
+        isCanceled = true;
+      };
+
+      const promise = new Promise<IArticle>((resolve, reject) => {
         const article = ARTICLES.find((e) => e.id === id);
-        setTimeout(() => {
+        const timeoutId = setTimeout(() => {
           if (article) {
             resolve(article);
           } else {
             reject(404);
           }
         }, 1000);
+
+        cancel = () => {
+          if (isCanceled) {
+            return;
+          }
+          clearTimeout(timeoutId);
+          reject('CANCEL');
+        };
       });
+
+      return [promise, cancel];
     }
   };
 };

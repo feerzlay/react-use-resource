@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
-import { isArrayEqueal } from './is-array-equal';
+import { isArrayEqual } from './is-array-equal';
 import { useResources } from './resources-context';
 import { useForceUpdate } from './use-force-update';
 
@@ -8,13 +8,11 @@ export type Resource<T> = { read: () => T; refresh: () => void };
 
 export function useResource<T, D extends unknown[]>(
   id: string,
-  service: (...args: D) => Promise<T>,
+  service: (...args: D) => Promise<T> | [Promise<T>, () => void],
   dependencies: D
 ): Resource<T> {
   const resources = useResources();
   const update = useForceUpdate();
-
-  const prevDependencies = useRef(dependencies);
 
   useEffect(() => {
     return () => {
@@ -23,25 +21,40 @@ export function useResource<T, D extends unknown[]>(
   }, []);
 
   const getResource = () => {
+    if (resources[id] && resources[id].status === 'PENDING' && resources[id].cancel) {
+      resources[id].isCanceled = true;
+      resources[id].cancel();
+    }
+
+    const s = service(...dependencies);
+    const promise = Array.isArray(s) ? s[0] : s;
+    const cancel = Array.isArray(s) ? s[1] : null;
+
     resources[id] = {
+      dependencies,
       status: 'PENDING',
-      result: service(...dependencies)
+      result: promise
         .then((result) => {
-          resources[id] = { status: 'SUCCESS', result };
+          resources[id] = { ...resources[id], status: 'SUCCESS', result };
         })
-        .catch((error) => {
-          resources[id] = { status: 'ERROR', result: error };
-        })
+        .catch((result) => {
+          if (resources[id].isCanceled) {
+            resources[id] = { ...resources[id], isCanceled: false };
+          } else {
+            resources[id] = { ...resources[id], status: 'ERROR', result };
+          }
+        }),
+      cancel,
+      isCanceled: resources[id]?.isCanceled || false
     };
   };
 
+  if (!(resources[id] && isArrayEqual(resources[id].dependencies, dependencies))) {
+    getResource();
+  }
+
   return {
     read: () => {
-      if (!resources[id] || !isArrayEqueal(prevDependencies.current, dependencies)) {
-        prevDependencies.current = dependencies;
-        getResource();
-      }
-
       switch (resources[id].status) {
         case 'PENDING':
         case 'ERROR':
