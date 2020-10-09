@@ -9,14 +9,14 @@ import { ArticlesShowArticle } from './articles-show-article';
 import { ArticlesShowErrorBoundary } from './articles-show-error-boundary';
 
 export const ArticlesShow: React.FC = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const articlesService = useArticlesService();
-  const article = useResource('ARTICLES::SHOW', articlesService.getOne, [+id]);
+  const articleResource = useResource('ARTICLES::SHOW', articlesService.getOne, [+id]);
 
   return (
     <>
       <ArticlesShowErrorBoundary key={id}>
-        <ArticlesShowArticle article={article} />
+        <ArticlesShowArticle articleResource={articleResource} />
       </ArticlesShowErrorBoundary>
 
       <Link to={`/${+id - 1}`}>Prev</Link>

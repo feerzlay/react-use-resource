@@ -5,15 +5,15 @@ import { Resource } from 'react-use-resource';
 import { IArticle } from './articles.service';
 
 interface IArticesShowArticleProps {
-  article: Resource<IArticle>;
+  articleResource: Resource<IArticle>;
 }
 
-export const ArticlesShowArticle: React.FC<IArticesShowArticleProps> = ({ article }) => {
+export const ArticlesShowArticle: React.FC<IArticesShowArticleProps> = ({ articleResource }) => {
   return (
     <>
-      <h1>{article.read().title}</h1>
+      <h1>{articleResource.read().title}</h1>
       <article>
-        <p>{article.read().content}</p>
+        <p>{articleResource.read().content}</p>
       </article>
     </>
   );

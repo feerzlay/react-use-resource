@@ -34,7 +34,8 @@ export default {
     typescript({ tsconfig: './tsconfig.web.json' }),
     commonjs(),
     replace({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.SSR': JSON.stringify('')
     }),
     systemjs({
       include: [require.resolve('systemjs/dist/s.js')]
