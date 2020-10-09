@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.3.0 (2020-10-09)
+
+
+### Features
+
+* add ssr support ([e307ec8](https://github.com/feerzlay/react-use-resource/commit/e307ec8eb9919a3ca888cb3d8e766484d9b91766))
+
 ## 0.2.0 (2020-09-24)
 
 
