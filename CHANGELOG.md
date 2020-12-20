@@ -2,7 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.4.0 (2020-12-20)
+
+
+### Features
+
+* start data fetching asap instead of waiting for a first read call ([1c8e3a8](https://github.com/feerzlay/react-use-resource/commit/1c8e3a89251f5289f610d48552fd344903739abf))
+
 ### 0.3.1 (2020-12-20)
+
 
 ### Features
 
