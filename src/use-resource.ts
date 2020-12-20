@@ -64,12 +64,12 @@ export function useResource<T, D extends unknown[]>(
     };
   };
 
+  if (!(resources[id] && isArrayEqual(resources[id].dependencies, dependencies))) {
+    getResource();
+  }
+
   return {
     read: () => {
-      if (!(resources[id] && isArrayEqual(resources[id].dependencies, dependencies))) {
-        getResource();
-      }
-
       switch (resources[id].status) {
         case 'PENDING':
         case 'ERROR':

@@ -1,8 +1,5 @@
 process.env.SSR = '1';
 
-import {} from 'react/experimental';
-import {} from 'react-dom/experimental';
-
 import * as fs from 'fs';
 import * as path from 'path';
 import * as express from 'express';

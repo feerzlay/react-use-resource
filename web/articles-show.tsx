@@ -8,6 +8,8 @@ import { useArticlesService } from './articles.service';
 import { ArticlesShowArticle } from './articles-show-article';
 import { ArticlesShowErrorBoundary } from './articles-show-error-boundary';
 
+import { Suspense } from './suspense';
+
 export const ArticlesShow: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const articlesService = useArticlesService();
@@ -15,9 +17,11 @@ export const ArticlesShow: React.FC = () => {
 
   return (
     <>
-      <ArticlesShowErrorBoundary key={id}>
-        <ArticlesShowArticle articleResource={articleResource} />
-      </ArticlesShowErrorBoundary>
+      <Suspense fallback={null}>
+        <ArticlesShowErrorBoundary key={id}>
+          <ArticlesShowArticle articleResource={articleResource} />
+        </ArticlesShowErrorBoundary>
+      </Suspense>
 
       <Link to={`/${+id - 1}`}>Prev</Link>
       <br />
