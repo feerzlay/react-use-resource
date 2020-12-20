@@ -4,8 +4,23 @@ import { isArrayEqual } from './is-array-equal';
 import { useResources } from './resources-context';
 import { useForceUpdate } from './use-force-update';
 
-export type Resource<T> = { read: () => T; refresh: () => void };
+export type Resource<T> = {
+  /**
+   * Returns resolved data or throws a promise for `Suspense` to catch.
+   */
+  read: () => T;
+  /**
+   * Refresh resource.
+   */
+  refresh: () => void;
+};
 
+/**
+ * Convert a promise returning function into a resource.
+ * @param id Resource ID.
+ * @param service A promise returning function or a tuple of a promise returning function and a cancellation function.
+ * @param dependencies Dependency list.
+ */
 export function useResource<T, D extends unknown[]>(
   id: string,
   service: (...args: D) => Promise<T> | [Promise<T>, () => void],

@@ -3,6 +3,9 @@ import { ResourcesContext } from './resources-context';
 
 interface IResourcesBoundaryProps {
   children: React.ReactNode;
+  /**
+   * If present, all data will be written to and read from this record.
+   */
   cache?: Record<string, any>;
 }
 
