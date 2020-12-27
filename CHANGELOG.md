@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 0.5.0 (2020-12-27)
+
+
+### Features
+
+* add useLazyResource hook ([f1ef7f0](https://github.com/feerzlay/react-use-resource/commit/f1ef7f064c23a6f814bf4e92f4e0c9da3df7946a))
+
 ### 0.4.0 (2020-12-20)
 
 

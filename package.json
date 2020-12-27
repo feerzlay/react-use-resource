@@ -1,8 +1,13 @@
 {
   "name": "react-use-resource",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Convert a promise returning function into a suspense compatible resource.",
-  "keywords": ["react", "suspense", "hooks", "data-fetching"],
+  "keywords": [
+    "react",
+    "suspense",
+    "hooks",
+    "data-fetching"
+  ],
   "main": "lib/index.js",
   "module": "lib/index.es.js",
   "jsnext:main": "lib/index.es.js",
