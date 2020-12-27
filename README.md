@@ -48,7 +48,7 @@ export function getUser(id: number) {
 }
 ```
 
-The `useResource` hook takes a resource id, a promise returning function and a dependency list and returns a resource for a provided function.
+The `useResource` hook takes a resource id, a promise returning function and a dependency list (which works simmilar to `useEffect` hook) and returns a resource for a provided function. Returned resource has `read` and `refresh` methods.
 
 ```tsx
 import { useResource } from 'react-use-resource';
@@ -78,6 +78,9 @@ export function getUser(id: number): [Promise<IUser>, () => void] {
   return [promise, controller.abort];
 }
 ```
+### Lazy resources
+
+Instead of `useResource` we can use `useLazyResource` hook. This way the resource will be requested only upon the `read` or `refresh` call.
 
 ### SSR
 

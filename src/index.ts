@@ -1,2 +1,4 @@
+export { Resource } from './resource';
 export { ResourcesBoundary } from './resources-boundary';
-export { useResource, Resource } from './use-resource';
+export { useResource } from './use-resource';
+export { useLazyResource } from './use-lazy-resource';

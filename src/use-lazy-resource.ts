@@ -6,12 +6,12 @@ import { useResources } from './resources-context';
 import { useForceUpdate } from './use-force-update';
 
 /**
- * Convert a promise returning function into a resource.
+ * Convert a promise returning function into a lazy resource.
  * @param id Resource ID.
  * @param service A promise returning function or a tuple of a promise returning function and a cancellation function.
  * @param dependencies Dependency list.
  */
-export function useResource<T, D extends unknown[]>(
+export function useLazyResource<T, D extends unknown[]>(
   id: string,
   service: (...args: D) => Promise<T> | [Promise<T>, () => void],
   dependencies: D
@@ -25,12 +25,12 @@ export function useResource<T, D extends unknown[]>(
     };
   }, []);
 
-  if (!(resources[id] && isArrayEqual(resources[id].dependencies, dependencies))) {
-    getResource(id, service, dependencies);
-  }
-
   return {
     read: () => {
+      if (!(resources[id] && isArrayEqual(resources[id].dependencies, dependencies))) {
+        getResource(id, service, dependencies);
+      }
+
       switch (resources[id].status) {
         case 'PENDING':
         case 'ERROR':
